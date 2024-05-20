@@ -13,13 +13,13 @@ fn send_bitcoin() {
     println!("\n");
 
     let mut recipient: String = String::new();
-    io::stdin().read_line(&mut recipient);
+    io::stdin().read_line(&mut recipient).expect("Failed to read line");
 
     if clients.contains(&recipient.trim()) {
         println!("How many Bitcoin do you want to send?\n");
 
         let mut amount = String::new();
-        io::stdin().read_line(&mut amount);
+        io::stdin().read_line(&mut amount).expect("Failed to read line");
 
         return println!("\nYou sent {} Bitcoin to {}!\n", amount.trim(), recipient.trim());
     }
@@ -30,11 +30,11 @@ fn send_bitcoin() {
 fn receive_bitcoin() {
     println!("\nWe're going to recieve some Bitcoin!\n");
     let _amount: i32 = rand::thread_rng().gen_range(1, 10);
-    println!("You just recieved {} Bitcoin!\n", _amount)
+    println!("You just recieved {} Bitcoin!\n", _amount);
 }
 
 fn exit_console() {
-    println!("Invalid option, must be (s) or (r)")
+    println!("Invalid option, must be (s) or (r)");
 }
 
 fn console() {
@@ -42,7 +42,7 @@ fn console() {
     println!("Do you want to send (s) or recieve (r) Bitcoin?\n");
 
     let mut command: String = String::new();
-    io::stdin().read_line(&mut command);
+    io::stdin().read_line(&mut command).expect("Failed to read line");
 
     if command.trim() == "s" { return send_bitcoin(); }
     if command.trim() == "r" { return receive_bitcoin(); }
